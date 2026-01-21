@@ -58,8 +58,8 @@ public class PracticalTest02v7MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Connecting to server on port: " + serverPort, Toast.LENGTH_SHORT).show();
             int serverPortInt = Integer.parseInt(serverPort);
 
-//            serverThread = new ServerThread(serverPortInt);
-//            serverThread.start();
+            ServerThread serverThread = new ServerThread(serverPortInt);
+            serverThread.start();
 
             Toast.makeText(this, "Server started on port: " + serverPort, Toast.LENGTH_SHORT).show();
         }
@@ -74,9 +74,8 @@ public class PracticalTest02v7MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Client connection parameters and command must be filled!", Toast.LENGTH_SHORT).show();
         } else {
             int clientPortInt = Integer.parseInt(clientPort);
-
-            // Start ClientThread to send command to server
-
+            ClientThread clientThread = new ClientThread(clientAddress, clientPortInt, commandResultTextView, command);
+            clientThread.start();
         }
     }
 
